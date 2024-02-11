@@ -1,6 +1,6 @@
-const shell = require('shelljs')
-const fs = require('fs-extra')
-const fetch = require('node-fetch')
+import shell from 'shelljs'
+import fs from 'fs-extra'
+import fetch from 'node-fetch'
 
 // Read the package version
 const packageJson = fs.readJsonSync('./package.json')
