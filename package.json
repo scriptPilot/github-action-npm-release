@@ -1,0 +1,26 @@
+{
+  "name": "@scriptpilot/github-action-npm-release",
+  "version": "1.0.0",
+  "description": "NPM & GitHub release on any package.json version update.",
+  "main": "index.js",
+  "scripts": {
+    "test": "",
+    "build": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scriptpilot/github-action-npm-release.git"
+  },
+  "author": "scriptPilot <mail@scriptpilot.de>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/scriptpilot/github-action-npm-release/issues"
+  },
+  "homepage": "https://github.com/scriptpilot/github-action-npm-release#readme",
+  "dependencies": {
+    "fs-extra": "^11.2.0",
+    "github-release-notes": "^0.17.3",
+    "node-fetch": "^3.3.2",
+    "shelljs": "^0.8.5"
+  }
+}

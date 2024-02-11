@@ -1,0 +1,13 @@
+name: "NPM Release GitHub Action"
+description: "NPM & GitHub release on any package.json version update."
+author: "scriptPilot"
+inputs:
+  GITHUB_TOKEN:
+    description: "GitHub Token"
+    required: true
+  NPM_TOKEN:
+    description: "NPM Token"
+    required: true
+runs:
+  using: "node12"
+  main: "index.js"
