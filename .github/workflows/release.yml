@@ -9,6 +9,7 @@ jobs:
     steps:        
       - uses: actions/checkout@v4
       - run: npm ci
+      - run: git show-ref --tags "v1.0.5"
       - run: node ./index.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
