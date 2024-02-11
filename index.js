@@ -7,13 +7,15 @@ const packageJson = fs.readJsonSync('./package.json')
 console.log(`Version in package.json file: ${packageJson.version}`)
 
 // Read all NPM versions
-const npmResp = await fetch(`https://registry.npmjs.org/${packageJson.name}`)
-const npmJson = await npmResp.json()
-const npmVersions = Object.keys(npmJson.versions)
-console.log(`Versions in NPM repository:`, npmVersions)
+if (process.env.NPM_TOKEN) {
+  const npmResp = await fetch(`https://registry.npmjs.org/${packageJson.name}`)
+  const npmJson = await npmResp.json()
+  const npmVersions = Object.keys(npmJson.versions)
+  console.log(`Versions in NPM repository:`, npmVersions)
+}
 
 // Exit the script if the package version is already published on NPM
-if (npmVersions.includes(packageJson.version)) {
+if (process.env.NPM_TOKEN && npmVersions.includes(packageJson.version)) {
   console.log(`Version ${packageJson.version} already published to NPM.`)
   process.exit(0)
 }
