@@ -1,6 +1,6 @@
 {
   "name": "@scriptpilot/github-action-npm-release",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "NPM & GitHub release on any package.json version update.",
   "main": "index.js",
   "type": "module",
