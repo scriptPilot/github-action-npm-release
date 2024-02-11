@@ -22,13 +22,11 @@ if (process.env.NPM_TOKEN && npmVersions.includes(packageJson.version)) {
 
 // Exit the script of the package version is already existing as a Git tag
 const tagInfo = shell.exec(`git show-ref --tags "v${packageJson.version}"`)
-console.log(tagInfo)
-process.exit(1)
-/*
-if (tagInfo.code !== 0) {
+if (tagInfo.code !== 0) process.exit(1)
+if (tagInfo.stdout !== '') {
   console.log(`Version ${packageJson.version} already existing as a Git tag.`)
   process.exit(1)
-}*/
+}
 
 // Run the test script
 if (shell.exec('npm run test').code !== 0) process.exit(1)
