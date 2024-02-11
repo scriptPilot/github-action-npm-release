@@ -20,6 +20,9 @@ if (process.env.NPM_TOKEN && npmVersions.includes(packageJson.version)) {
   process.exit(0)
 }
 
+// Exit the script of the package version is already existing as a Git tag
+if (shell.exec(`if git show-ref --tags "${packageJson.version}" >/dev/null; then exit 1 fi`).code !== 0) process.exit(1)
+
 // Run the test script
 if (shell.exec('npm run test').code !== 0) process.exit(1)
 
