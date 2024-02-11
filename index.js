@@ -20,29 +20,21 @@ if (process.env.NPM_TOKEN && npmVersions.includes(packageJson.version)) {
   process.exit(0)
 }
 
-// Exit the script of the package version is already existing as a Git tag
-const tagInfo = shell.exec(`git show-ref --tags v${packageJson.version}`)
-console.log(tagInfo)
-if (tagInfo.stdout !== '') {
-  console.log(`Version ${packageJson.version} already existing as a Git tag.`)
-  process.exit(1)
-}
-
 // Run the test script
 if (shell.exec('npm run test').code !== 0) process.exit(1)
 
 // Run the build script
 if (shell.exec('npm run build').code !== 0) process.exit(1)
 
+// Create a Git tag
+if (shell.exec(`git tag "v${packageJson.version}"`).code !== 0) process.exit(1)
+if (shell.exec(`git push origin "v${packageJson.version}"`).code !== 0) process.exit(1)
+
 // Publish to NPM
 if (process.env.NPM_TOKEN) {
   fs.writeFileSync('.npmrc', `//registry.npmjs.org/:_authToken=${process.env.NPM_TOKEN}`)
   if (shell.exec('npm publish --access public').code !== 0) process.exit(1)
 }
-
-// Create a Git tag
-if (shell.exec(`git tag "v${packageJson.version}"`).code !== 0) process.exit(1)
-if (shell.exec(`git push origin "v${packageJson.version}"`).code !== 0) process.exit(1)
 
 // Create a GitHub release
 if (shell.exec(`gh release create "v${packageJson.version}"`).code !== 0) process.exit(1)
