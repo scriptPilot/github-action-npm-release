@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "",
-    "build": "ncc build index.js && git add dist/* && git commit -m 'build action' && git push"
+    "build": "npx ncc build src/index.js",
+    "preversion": "npm run test && npm run build"
   },
   "repository": {
     "type": "git",
