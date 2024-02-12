@@ -2,6 +2,8 @@ import shell from 'shelljs'
 import fs from 'fs-extra'
 import fetch from 'node-fetch'
 
+console.log('new')
+
 // Read the package version
 const packageJson = fs.readJsonSync('./package.json')
 console.log(`Version in package.json file: ${packageJson.version}`)
