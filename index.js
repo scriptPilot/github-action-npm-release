@@ -3,8 +3,7 @@ import fs from 'fs-extra'
 import fetch from 'node-fetch'
 
 // Read the package version
-console.log(process.env)
-const packageJson = fs.readJsonSync(`${process.env.GITHUB_ACTION_PATH}/package.json`)
+const packageJson = fs.readJsonSync('./package.json')
 console.log(`Version in package.json file: ${packageJson.version}`)
 
 // Read all NPM versions

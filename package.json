@@ -6,7 +6,10 @@
   "type": "module",
   "scripts": {
     "test": "",
-    "build": ""
+    "build": "npm run build:link && npm run build:bundle",
+    "build:link": "cd ./node_modules/@vercel/ncc && npm link",
+    "build:bundle": "ncc index.js",
+    "build:push": "git add dist/* && git commit -m 'build action' && git push"
   },
   "repository": {
     "type": "git",
@@ -23,5 +26,8 @@
     "github-release-notes": "^0.17.3",
     "node-fetch": "^3.3.2",
     "shelljs": "^0.8.5"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.38.1"
   }
 }
