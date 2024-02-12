@@ -34,3 +34,12 @@ jobs:
 
 4. Increase the version in the `package.json` file.
 5. Commit and push the change to the repository.
+
+## Development
+
+For this repository:
+
+- apply changes with link to an issue
+- run `npm version patch | minor | major`
+
+This will run the `test` and `build` script, commit the `dist` folder and increase the package version.
