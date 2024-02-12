@@ -1,15 +1,12 @@
 {
   "name": "@scriptpilot/github-action-npm-release",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "NPM & GitHub release on any package.json version update.",
   "main": "index.js",
   "type": "module",
   "scripts": {
     "test": "",
-    "build": "npm run build:link && npm run build:bundle",
-    "build:link": "cd ./node_modules/@vercel/ncc && npm link",
-    "build:bundle": "ncc build index.js",
-    "build:push": "git add dist/* && git commit -m 'build action' && git push"
+    "build": "ncc build index.js && git add dist/* && git commit -m 'build action' && git push"
   },
   "repository": {
     "type": "git",
