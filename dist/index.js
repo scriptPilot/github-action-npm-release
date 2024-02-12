@@ -17560,6 +17560,8 @@ __nccwpck_require__.a(__webpack_module__, async (__webpack_handle_async_dependen
 
 
 
+console.log('new')
+
 // Read the package version
 const packageJson = fs_extra__WEBPACK_IMPORTED_MODULE_1__.readJsonSync('./package.json')
 console.log(`Version in package.json file: ${packageJson.version}`)
