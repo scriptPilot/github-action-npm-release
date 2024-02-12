@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "",
-    "build": "npx ncc build src/index.js",
+    "build": "npx ncc build src/index.js && git add dist/* && git commit -m 'dist folder update'",
     "preversion": "npm run test && npm run build"
   },
   "repository": {
