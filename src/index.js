@@ -2,6 +2,16 @@ import shell from 'shelljs'
 import fs from 'fs-extra'
 import fetch from 'node-fetch'
 
+// Check the environment variables
+if (!process.env.GITHUB_TOKEN) {
+  console.log('Please provide the GITHUB_TOKEN as environment variable.')
+  process.exit(1)
+}
+if (!process.env.NPM_TOKEN) {
+  console.log('Please provide the NPM_TOKEN as environment variable.')
+  process.exit(1)
+}
+
 // Read the package version
 const packageJson = fs.readJsonSync('./package.json')
 console.log(`Version in package.json file: ${packageJson.version}`)

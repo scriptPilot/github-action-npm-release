@@ -1,0 +1,27 @@
+trigger
+
+- push
+- tag >> release with release notes
+- release >> npm publish
+
+
+Action:
+  npm version: test > build > 
+
+
+-- website --
+
+npm version: test > tag
+  tag: release with notes
+  release: mysql deploy, ftp deploy
+
+-- NPM Module --
+
+npm version: test > tag
+  tag: release with notes
+  release: npm deploy
+
+-- native --
+
+npm version: test > build > tag
+  tag: release with notes and artifacts
