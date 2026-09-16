@@ -17560,7 +17560,15 @@ __nccwpck_require__.a(__webpack_module__, async (__webpack_handle_async_dependen
 
 
 
-console.log('new')
+// Check the environment variables
+if (!process.env.GITHUB_TOKEN) {
+  console.log('Please provide the GITHUB_TOKEN as environment variable.')
+  process.exit(1)
+}
+if (!process.env.NPM_TOKEN) {
+  console.log('Please provide the NPM_TOKEN as environment variable.')
+  process.exit(1)
+}
 
 // Read the package version
 const packageJson = fs_extra__WEBPACK_IMPORTED_MODULE_1__.readJsonSync('./package.json')
@@ -17570,7 +17578,7 @@ console.log(`Version in package.json file: ${packageJson.version}`)
 if (process.env.NPM_TOKEN) {
   const npmResp = await (0,node_fetch__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .ZP)(`https://registry.npmjs.org/${packageJson.name}`)
   const npmJson = await npmResp.json()
-  const npmVersions = Object.keys(npmJson.versions)
+  const npmVersions = npmJson.versions ? Object.keys(npmJson.versions) : []
   console.log(`Versions in NPM repository:`, npmVersions)
 }
 
