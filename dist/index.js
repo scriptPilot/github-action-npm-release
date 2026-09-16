@@ -17565,9 +17565,11 @@ if (!process.env.GITHUB_TOKEN) {
   console.log('Please provide the GITHUB_TOKEN as environment variable.')
   process.exit(1)
 }
-if (!process.env.NPM_TOKEN) {
-  console.log('Please provide the NPM_TOKEN as environment variable.')
-  process.exit(1)
+
+if (process.env.NPM_TOKEN) {
+  console.log('NPM_TOKEN provided - package will be released to GitHub and NPM.')
+} else {
+  console.log('No NPM_TOKEN provided - GitHub release only.')
 }
 
 // Read the package version
@@ -17575,15 +17577,13 @@ const packageJson = fs_extra__WEBPACK_IMPORTED_MODULE_1__.readJsonSync('./packag
 console.log(`Version in package.json file: ${packageJson.version}`)
 
 // Read all NPM versions
-if (process.env.NPM_TOKEN) {
-  const npmResp = await (0,node_fetch__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .ZP)(`https://registry.npmjs.org/${packageJson.name}`)
-  const npmJson = await npmResp.json()
-  const npmVersions = npmJson.versions ? Object.keys(npmJson.versions) : []
-  console.log(`Versions in NPM repository:`, npmVersions)
-}
+const npmResp = await (0,node_fetch__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .ZP)(`https://registry.npmjs.org/${packageJson.name}`)
+const npmJson = await npmResp.json()
+const npmVersions = npmJson.versions ? Object.keys(npmJson.versions) : []
+console.log(`Versions in NPM repository:`, npmVersions)
 
 // Exit the script if the package version is already published on NPM
-if (process.env.NPM_TOKEN && npmVersions.includes(packageJson.version)) {
+if (npmVersions.includes(packageJson.version)) {
   console.log(`Version ${packageJson.version} already published to NPM.`)
   process.exit(0)
 }
