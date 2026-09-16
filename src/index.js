@@ -20,7 +20,7 @@ console.log(`Version in package.json file: ${packageJson.version}`)
 if (process.env.NPM_TOKEN) {
   const npmResp = await fetch(`https://registry.npmjs.org/${packageJson.name}`)
   const npmJson = await npmResp.json()
-  const npmVersions = Object.keys(npmJson.versions)
+  const npmVersions = npmJson.versions ? Object.keys(npmJson.versions) : []
   console.log(`Versions in NPM repository:`, npmVersions)
 }
 
